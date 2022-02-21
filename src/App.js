@@ -1,46 +1,58 @@
-import logo from './logo.svg';
 import './App.css';
-import ReactFullpage from '@fullpage/react-fullpage';
 import { Nav } from './comps/nav';
-import AnimatedEntry from './comps/AnimatedEntry';
-import Background from './comps/Background';
-
-
+import React, { useState, useRef } from 'react'
+import clamp from 'lodash-es/clamp'
+import { useSprings, animated } from 'react-spring'
+import { useGesture, useDrag } from '@use-gesture/react'
+import Page2 from './comps/Page2';
+import Page3 from './comps/Page3';
+import Page from './comps/Page'
 function App() {
+  const pages = [
+    <Page />,
+    <Page3 />,
+    <Page2 />,
+    '',
+    '',
+    ''
+  ]
+  const index = useRef(0)
+  const width = window.innerHeight
+
+  const [props, api] = useSprings(pages.length, i => ({
+    y: i * width,
+    scale: 1,
+    display: 'block',
+  }))
+
+  const bind = useDrag(({ active, movement: [mx, my], direction: [xDir, yDir], cancel }) => {
+    if (active && Math.abs(my) > width / 2) {
+      index.current = clamp(index.current + (yDir > 0 ? -1 : 1), 0, pages.length - 1)
+      cancel()
+    }
+    api.start(i => {
+      if (i < index.current - 1 || i > index.current + 1) return { display: 'none' }
+      const y = (i - index.current) * width + (active ? my : 0)
+      const scale = active ? 1 - Math.abs(my) / width / 2 : 1
+      return { y, scale, display: 'block' }
+    })
+  })
+
   return (
     <div className="App">
-      <Nav />
-      <Background />
-      <ReactFullpage
-        licenseKey={'GPLv3'}
-        scrollingSpeed={1000}
-        render={({ state, fullpageApi }) => {
-          try{
-          console.log(fullpageApi.getActiveSlide())
-          }catch{}
-          return (
-            <ReactFullpage.Wrapper>
-              <div className="section">
-                {/* <AnimatedEntry></AnimatedEntry> */}
-                <p>Section 1 (welcome to fullpage.js)</p>
-                <button onClick={() => fullpageApi.moveSectionDown()}>
-                  Click me to move down
-                </button>
-              </div>
-              <div className="section">
-                <p>Section 2</p>
-              </div>
-              <div className="section">
-                <p>Section 3</p>
-              </div>
-
-            </ReactFullpage.Wrapper>
-          );
-        }}
-
-      />
+      <Nav></Nav>
+      <div className='wrapper'>
+        {props.map(({ y, display, scale }, i) => (
+          <animated.div className='slide' {...bind()} key={i} style={{ display, y }}>
+            <animated.div style={{ scale }} className='slide-wrapper'>{pages[i]}</animated.div>
+          </animated.div>
+        ))}
+      </div>
     </div>
-  );
+  )
+
 }
 
 export default App;
+
+

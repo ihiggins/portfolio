@@ -1,3 +1,4 @@
+import "./Background.css";
 const Background = () => (
   <div className="background">
     <div className="space-rays">
