@@ -1,7 +1,7 @@
 import "./nav.css";
 import { useState, useEffect } from "react";
 
-export function Nav() {
+export function Nav({ move }: any) {
   const [active, setActive] = useState(true);
   const [darken, setDarken] = useState("menu-icon__line");
 
@@ -29,8 +29,7 @@ export function Nav() {
     }
   }
   function movePage(element) {
-    var testDiv = document.getElementById(element);
-    testDiv.scrollIntoView();
+    move(element);
     toggleNav();
   }
   return (
@@ -55,7 +54,7 @@ export function Nav() {
             <li
               className="nav__list-item"
               onClick={() => {
-                movePage("landing");
+                movePage(0);
               }}
             >
               Home
@@ -63,7 +62,7 @@ export function Nav() {
             <li
               className="nav__list-item"
               onClick={() => {
-                movePage("about");
+                movePage(1);
               }}
             >
               About
@@ -71,7 +70,7 @@ export function Nav() {
             <li
               className="nav__list-item"
               onClick={() => {
-                movePage("experience");
+                movePage(2);
               }}
             >
               Experience

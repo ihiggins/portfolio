@@ -2,7 +2,7 @@ import './App.css';
 import { Nav } from './comps/nav';
 import React, { useState, useRef } from 'react'
 import clamp from 'lodash-es/clamp'
-import { useSprings, animated } from 'react-spring'
+import { useSprings, animated, useSpringRef } from 'react-spring'
 import { useGesture, useDrag } from '@use-gesture/react'
 import Page2 from './comps/Page2';
 import Page3 from './comps/Page3';
@@ -12,22 +12,23 @@ function App() {
     <Page />,
     <Page3 />,
     <Page2 />,
-    '',
-    '',
-    ''
   ]
-  const index = useRef(0)
+  const [index, setIndex] = useState({ current: 0 })
+
   const width = window.innerHeight
+  const springRef = useSpringRef()
 
   const [props, api] = useSprings(pages.length, i => ({
+    ref: springRef,
     y: i * width,
     scale: 1,
     display: 'block',
   }))
 
   const bind = useDrag(({ active, movement: [mx, my], direction: [xDir, yDir], cancel }) => {
+
     if (active && Math.abs(my) > width / 2) {
-      index.current = clamp(index.current + (yDir > 0 ? -1 : 1), 0, pages.length - 1)
+      setIndex({ current: clamp(index.current + (yDir > 0 ? -1 : 1), 0, pages.length - 1) })
       cancel()
     }
     api.start(i => {
@@ -38,9 +39,12 @@ function App() {
     })
   })
 
+  const movePage = (page) => {
+    setIndex({ current: page })
+  }
   return (
     <div className="App">
-      <Nav></Nav>
+      <Nav move={movePage}></Nav>
       <div className='wrapper'>
         {props.map(({ y, display, scale }, i) => (
           <animated.div className='slide' {...bind()} key={i} style={{ display, y }}>

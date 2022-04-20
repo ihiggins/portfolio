@@ -44,6 +44,17 @@ const Page = () => {
                 <span></span>
             </div>
 
+
+            <div className='drag'>
+                <div className='drag-line'><div />  <div /></div>
+                <div className='drag-text'>DRAG</div>
+
+                <div className='drag-line'>
+                    <div />
+                    <div />
+                </div>
+            </div>
+
         </div>
     </div>
 

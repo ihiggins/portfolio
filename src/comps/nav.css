@@ -10,9 +10,10 @@
 }
 .nav-name{
 color: #ffffff;
-font-weight: 200;
-font-size: 20px;
-font-family: 'Open Sans', sans-serif;
+font-weight: 100;
+font-size: 12px;
+font-family: "Poppins", sans-serif;
+
 }
 .site-content {
   max-width: 1100px;
@@ -86,6 +87,7 @@ font-family: 'Open Sans', sans-serif;
   background: white;
   -webkit-transition-delay: 0s;
   transition-delay: 0s;
+
 }
 .nav:before {
   -webkit-transition-delay: 0.1s;

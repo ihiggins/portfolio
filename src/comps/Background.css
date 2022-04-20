@@ -162,20 +162,6 @@
   position: absolute;
   top:20%;
   left:5%;
-  z-index: 1000;
+  z-index: 20;
 }
 
-.main-title{
-  font-family: "Poppins", sans-serif;
-  color: aliceblue;
-  font-weight: 400;
-
-  font-size: 4rem;
-  text-shadow: 0 10px 30px rgb(2 11 22 / 50%);
-} 
-.main-heading{
-  color:#ff4d5a;
-  font-weight: 400;
-  font-size: 3rem;
-  text-shadow: 0 10px 30px rgb(2 11 22 / 50%);
-}
