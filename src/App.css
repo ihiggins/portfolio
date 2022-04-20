@@ -335,6 +335,12 @@ path {
   }
 }
 
+@media only screen and (max-width: 1200px) {
+.box-column{
+  max-width: 40%;
+}
+}
+
 
 .project-list {
   max-width: 450px;
