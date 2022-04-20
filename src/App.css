@@ -407,3 +407,7 @@ path {
   top:20px;
   text-shadow: 0 10px 30px rgb(2 11 22 / 50%);
 }
+
+a{
+  text-decoration: none;
+}

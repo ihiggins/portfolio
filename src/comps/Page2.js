@@ -6,32 +6,30 @@ const Page2 = () => {
                 <div className="page-title">Projects</div>
 
                 <div className="project-list">
-                    <div className="dark-pane">
-                        <img src="https://github.com/ihiggins/expt/raw/master/Preview.png" />
-                        <div>
-                            <h2>Expt</h2>
-                            <p>A Quiz Answering tool.</p>
-                            <span>Electron | React | Typescript | Scss | Mui 5 (Icons) </span>
-                        </div>
-                    </div>
+                    <a href="https://github.com/ihiggins/expt">
+                        <div className="dark-pane">
 
-                    <div className="dark-pane">
-                        <img src="https://github.com/ihiggins/expt/raw/master/Preview.png" />
-                        <div>
-                            <h2>Expt</h2>
-                            <p>A Quiz Answering tool.</p>
-                            <span>Electron | React | Typescript | Scss | Mui 5 (Icons) </span>
-                        </div>
-                    </div>
+                            <img src="https://github.com/ihiggins/expt/raw/master/Preview.png" />
+                            <div>
+                                <h2>Expt</h2>
+                                <p>A Quiz Answering tool.</p>
+                                <span>Electron | React | Typescript | Scss | Mui 5 (Icons) </span>
+                            </div>
 
-                    <div className="dark-pane">
-                        <img src="https://github.com/ihiggins/expt/raw/master/Preview.png" />
-                        <div>
-                            <h2>Expt</h2>
-                            <p>A Quiz Answering tool.</p>
-                            <span>Electron | React | Typescript | Scss | Mui 5 (Icons) </span>
                         </div>
-                    </div>
+                    </a>
+                    <a href="https://github.com/ihiggins/portfolio">
+
+                        <div className="dark-pane">
+                            <img src="./portfolio.png" />
+                            <div>
+                                <h2>Portfolio</h2>
+                                <p>This website</p>
+                                <span> React | Typescript </span>
+                            </div>
+                        </div>
+                    </a>
+
 
 
                 </div>
