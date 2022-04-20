@@ -1,7 +1,7 @@
 # Portfolio
 
 
-<img src="Preview.png" width="618" />
+<img src="preview.png" width="618" />
 
 ## App
 
